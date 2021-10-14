@@ -1,30 +1,59 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
   <router-view/>
 </template>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+@import url(https://fonts.googleapis.com/earlyaccess/mplus1p.css);
+@font-face {
+  font-family: "Yu Gothic";
+  src: local("Yu Gothic Medium");
+  font-weight: 100;
+  font-display: swap;
 }
-
-#nav {
-  padding: 30px;
+@font-face {
+  font-family: "Yu Gothic";
+  src: local("Yu Gothic Medium");
+  font-weight: 200;
+  font-display: swap;
 }
-
-#nav a {
+@font-face {
+  font-family: "Yu Gothic";
+  src: local("Yu Gothic Medium");
+  font-weight: 300;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Yu Gothic";
+  src: local("Yu Gothic Medium");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Yu Gothic";
+  src: local("Yu Gothic Bold");
   font-weight: bold;
-  color: #2c3e50;
+  font-display: swap;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+html, body {
+  width: 100vw;
+  height: 100vh;
+  background: none;
+  margin: 0;
+  padding: 0;
+}
+
+#app {
+  font-family: "TsukuARdGothic-Regular", "M PLUS 1p", "Yu Gothic", sans-serif;
+  display: block;
+  color: #2c3e50;
+  width: 100%;
+  height: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 0 auto;
+  padding-top: 40px;
+  background: none;
 }
 </style>
