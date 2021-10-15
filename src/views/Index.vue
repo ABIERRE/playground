@@ -1,12 +1,13 @@
 <template>
   <div class="Index">
+    <div class="IndexTitle">Calender Demo</div>
     <Calender v-model="state.date"/>
 
     <BtnVue class="todayBtn" text="Today" @click="setToday"/>
 
     <div class="targetContainer">
       <div class="Label">Target Date: </div>
-      <div class="Content">{{ new Date(state.date) }}</div>
+      <div class="Content">{{ getFormattedDate() }}</div>
     </div>
   </div>
 </template>
@@ -37,9 +38,20 @@ export default defineComponent({
       state.date = +new Date()
     }
 
+    const getFormattedDate = (): string => {
+      const dt = new Date(state.date)
+      const y = dt.getFullYear()
+      const m = ('00' + (dt.getMonth() + 1)).slice(-2)
+      const d = ('00' + dt.getDate()).slice(-2)
+      const day = dt.getDay()
+      const dayStr = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][day]
+      return y + '.' + m + '.' + d + ' ( ' + dayStr + ' )'
+    }
+
     return {
       state,
-      setToday
+      setToday,
+      getFormattedDate
     }
   }
 })
@@ -51,6 +63,13 @@ export default defineComponent({
   height: 0 auto;
   padding: 20px;
   background: #fff;
+}
+
+.IndexTitle {
+  font-size: 30px;
+  line-height: 40px;
+  margin-bottom: 40px;
+  letter-spacing: 3px;
 }
 
 .targetContainer {

@@ -248,7 +248,7 @@ export default defineComponent({
   width: 260px;
   height: 230px;
   overflow: scroll;
-  box-shadow: 3px 3px 5px 0px #00000021;
+  box-shadow: 2px 2px 4px 0px #00000021;
   background: #eee;
   padding: 10px;
   overflow: hidden;
