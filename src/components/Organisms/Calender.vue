@@ -48,8 +48,9 @@ import {
   reactive,
   onMounted,
   computed,
-  watchEffect,
-  defineComponent
+  defineComponent,
+  watch,
+  watchEffect
 } from 'vue'
 
 type CalenderState = {
@@ -57,9 +58,6 @@ type CalenderState = {
   date: number,
   y: number,
   m: number,
-  d: number,
-  day: number,
-  dayStr: string,
   dayStart: number,
   dateMax: number
 }
@@ -84,9 +82,6 @@ export default defineComponent({
       date: +new Date(),
       y: 0,
       m: 0,
-      d: 0,
-      day: 0,
-      dayStr: '',
       dayStart: 0,
       dateMax: 0
     })
@@ -111,25 +106,23 @@ export default defineComponent({
 
     const setDispDate = (): string => state.y + '.' + state.m
 
-    const setDate = (date?: number): void => {
-      if (date === undefined) return
-      const d = +new Date(state.y, state.m - 1, date, 0, 0, 0)
+    const setDate = (date: string): void => {
+      if (date === '') return
+      if (date === '0') return
       console.log(date)
+      const val = parseInt(date)
+      if (isNaN(val)) return
+      const d = +new Date(state.y, state.m - 1, val, 0, 0, 0)
       tdate.value = d
     }
 
-    const initCalender = () => {
+    const initCalender = (): void => {
+      console.log('called initCalender')
       const dt = new Date(tdate.value)
+      console.log('target calender', dt)
+
       const y = dt.getFullYear()
-      const m = dt.getMonth()
-      const d = dt.getDate()
-
-      const H = dt.getHours()
-      const M = dt.getMinutes()
-      const S = dt.getSeconds()
-
-      const day = dt.getDay()
-      const dayStr = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][day]
+      const m = dt.getMonth() + 1
 
       const st = new Date(state.y, state.m - 1, 1)
       const ed = new Date(state.y, state.m, 0)
@@ -137,13 +130,8 @@ export default defineComponent({
       const dayStart = st.getDay()
       const dateMax = ed.getDate()
 
-      console.log(y, m, d, day, H, M, S)
-
-      target.y = y
-      target.m = m
-      target.d = d
-      target.day = day
-      target.dayStr = dayStr
+      state.y = y
+      state.m = m
 
       state.dateMax = dateMax
       state.dayStart = dayStart
@@ -151,8 +139,44 @@ export default defineComponent({
       state.dispDate = setDispDate()
     }
 
-    watchEffect(() => {
-      initCalender()
+    const setTarget = (): void => {
+      const dt = new Date(tdate.value)
+
+      const y = dt.getFullYear()
+      const m = dt.getMonth()
+      const d = dt.getDate()
+
+      const day = dt.getDay()
+      const dayStr = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][day]
+
+      target.y = y
+      target.m = m
+      target.d = d
+
+      target.day = day
+      target.dayStr = dayStr
+      if (target.y !== state.y) state.y = y
+      if (target.m !== state.m) state.m = m + 1
+    }
+
+    initCalender()
+    setTarget()
+
+    watch(() => tdate.value, ():void => {
+      setTarget()
+    })
+
+    watchEffect((): void => {
+      const st = new Date(state.y, state.m - 1, 1)
+      const ed = new Date(state.y, state.m, 0)
+
+      const dayStart = st.getDay()
+      const dateMax = ed.getDate()
+
+      state.dateMax = dateMax
+      state.dayStart = dayStart
+
+      state.dispDate = setDispDate()
     })
 
     const rendarDate = (i: number): string => {
@@ -184,6 +208,7 @@ export default defineComponent({
       console.log('after, prev', dt)
       state.y = dt.getFullYear()
       state.m = dt.getMonth() + 1
+      console.log(state.y, state.m)
     }
 
     const ff = () => {
@@ -192,6 +217,7 @@ export default defineComponent({
       console.log('after, prev', dt)
       state.y = dt.getFullYear()
       state.m = dt.getMonth() + 1
+      console.log(state.y, state.m)
     }
 
     const isPage = computed(() => store.getters['system/isPage']())
