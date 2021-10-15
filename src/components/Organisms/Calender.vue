@@ -131,7 +131,7 @@ export default defineComponent({
       const dateMax = ed.getDate()
 
       state.y = y
-      state.m = m
+      state.m = m + 1
 
       state.dateMax = dateMax
       state.dayStart = dayStart
@@ -150,11 +150,12 @@ export default defineComponent({
       const dayStr = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][day]
 
       target.y = y
-      target.m = m
+      target.m = m + 1
       target.d = d
 
       target.day = day
       target.dayStr = dayStr
+
       if (target.y !== state.y) state.y = y
       if (target.m !== state.m) state.m = m + 1
     }
@@ -186,7 +187,7 @@ export default defineComponent({
 
     const diffDate = (d: number): boolean => {
       if (target.y !== state.y) return false
-      if (target.m + 1 !== state.m) return false
+      if (target.m !== state.m) return false
       return target.d === d - state.dayStart + 1
     }
 
