@@ -1,39 +1,40 @@
 <template>
   <div class="Calender">
-    <div class="CalenderContainer">
-      <Icon class="nIcon prev" :src="larrow" @click="prev" />
-      <div class="CalenderHead">{{ state.dispDate }}</div>
-      <Icon class="nIcon ff" :src="rarrow" @click="ff" />
-      <div
-        class="CalenderHeadRow"
-      >
-        <div><div class="dayHead">Mon</div></div>
-        <div><div class="dayHead">Tue</div></div>
-        <div><div class="dayHead">Wed</div></div>
-        <div><div class="dayHead">Thu</div></div>
-        <div><div class="dayHead">Fri</div></div>
-        <div><div class="dayHead">Sat</div></div>
-        <div><div class="dayHead">Sun</div></div>
-      </div>
-      <div
-        class="CalenderRow"
-        v-for="row in 6"
-        :key="row"
-      >
+    <Pop>
+      <div class="CalenderContainer" v-show="isPage">
+        <Icon class="nIcon prev" :src="larrow" @click="prev" />
+        <div class="CalenderHead">{{ state.dispDate }}</div>
+        <Icon class="nIcon ff" :src="rarrow" @click="ff" />
         <div
-          v-for="i in 7"
-          :key="i"
+          class="CalenderHeadRow"
+        >
+          <div><div class="dayHead">Mon</div></div>
+          <div><div class="dayHead">Tue</div></div>
+          <div><div class="dayHead">Wed</div></div>
+          <div><div class="dayHead">Thu</div></div>
+          <div><div class="dayHead">Fri</div></div>
+          <div><div class="dayHead">Sat</div></div>
+          <div><div class="dayHead">Sun</div></div>
+        </div>
+        <div
+          class="CalenderRow"
+          v-for="row in 6"
+          :key="row"
         >
           <div
-            :class="getDayColor(i + ((row - 1) * 7))"
-            @click="setDate(rendarDate(i + ((row - 1) * 7)))"
+            v-for="i in 7"
+            :key="i"
           >
-            <div class="CalenderDate">{{ rendarDate(i + ((row - 1) * 7)) }}</div>
+            <div
+              :class="getDayColor(i + ((row - 1) * 7))"
+              @click="setDate(rendarDate(i + ((row - 1) * 7)))"
+            >
+              <div class="CalenderDate">{{ rendarDate(i + ((row - 1) * 7)) }}</div>
+            </div>
           </div>
         </div>
       </div>
-
-    </div>
+    </Pop>
   </div>
 </template>
 
@@ -43,6 +44,8 @@ import Icon from '@/components/Atoms/Icon.vue'
 
 import larrow from '@/assets/larrow.svg'
 import rarrow from '@/assets/rarrow.svg'
+
+import Pop from '@/components/Transition/Pop.vue'
 
 import {
   reactive,
@@ -65,7 +68,8 @@ type CalenderState = {
 export default defineComponent({
   name: 'Calender',
   components: {
-    Icon
+    Icon,
+    Pop
   },
   props: {
     modelValue: {
@@ -225,6 +229,7 @@ export default defineComponent({
 
     onMounted(() => {
       console.log('mounted Calender', +new Date())
+      store.dispatch('system/setPage', true)
     })
 
     return {
@@ -248,9 +253,6 @@ export default defineComponent({
   width: 260px;
   height: 230px;
   overflow: scroll;
-  box-shadow: 2px 2px 4px 0px #00000021;
-  background: #eee;
-  padding: 10px;
   overflow: hidden;
   border-radius: 5px;
   user-select: none;
@@ -260,6 +262,9 @@ export default defineComponent({
   position: relative;
   width: inherit;
   height: inherit;
+  padding: 10px;
+  background: #eee;
+  box-shadow: 2px 2px 4px 0px #00000021;
 }
 
 .CalenderHead {
@@ -277,14 +282,14 @@ export default defineComponent({
 
 .prev {
   position: absolute;
-  top: 0px;
-  left: 0px;
+  top: 10px;
+  left: 10px;
 }
 
 .ff {
   position: absolute;
-  top: 0px;
-  right: 20px;
+  top: 10px;
+  right: 10px;
 }
 
 .nIcon:hover {
