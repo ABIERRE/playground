@@ -1,20 +1,20 @@
 <template>
   <div class="IndexController">
-    <Pop>
-    <TodayBtn v-show="isPage"/>
-    </Pop>
+    <VerticalInOut>
+      <TodayBtn v-show="isPage"/>
+    </VerticalInOut>
 
-    <Pop>
+    <VerticalInOut>
       <SubTitle
         v-show="isPage"
         text="Target Date: "
       />
-    </Pop>
-    <Pop>
+    </VerticalInOut>
+    <VerticalInOut>
       <DateText
         v-show="isPage"
       />
-    </Pop>
+    </VerticalInOut>
   </div>
 </template>
 
@@ -25,15 +25,14 @@ import { useStore } from 'vuex'
 import SubTitle from '@/components/Atoms/SubTitle.vue'
 import TodayBtn from '@/components/Molecules/TodayBtn.vue'
 import DateText from '@/components/Molecules/DateText.vue'
-import Pop from '../Transition/Pop.vue'
-
+import VerticalInOut from '../Transition/VerticalInOut.vue'
 export default defineComponent({
   name: 'IndexController',
   components: {
     SubTitle,
     TodayBtn,
     DateText,
-    Pop
+    VerticalInOut
   },
   setup () {
     const store = useStore()
