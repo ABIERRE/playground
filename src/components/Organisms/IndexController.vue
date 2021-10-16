@@ -4,13 +4,17 @@
       <TodayBtn v-show="isPage"/>
     </VerticalInOut>
 
-    <VerticalInOut>
+    <VerticalInOut
+      :delay="500"
+    >
       <SubTitle
         v-show="isPage"
         text="Target Date: "
       />
     </VerticalInOut>
-    <VerticalInOut>
+    <VerticalInOut
+      :delay="500"
+    >
       <DateText
         v-show="isPage"
       />
@@ -26,6 +30,7 @@ import SubTitle from '@/components/Atoms/SubTitle.vue'
 import TodayBtn from '@/components/Molecules/TodayBtn.vue'
 import DateText from '@/components/Molecules/DateText.vue'
 import VerticalInOut from '../Transition/VerticalInOut.vue'
+
 export default defineComponent({
   name: 'IndexController',
   components: {
