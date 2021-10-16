@@ -1,35 +1,33 @@
 <template>
-  <div class="Calender">
-    <div class="CalenderContainer" v-show="isPage">
-      <Icon class="nIcon prev" :src="larrow" @click="prev" />
-      <div class="CalenderHead">{{ state.dispDate }}</div>
-      <Icon class="nIcon ff" :src="rarrow" @click="ff" />
+  <div class="CalenderContainer" v-show="isPage">
+    <Icon class="nIcon prev" :src="larrow" @click="prev" />
+    <div class="CalenderHead">{{ state.dispDate }}</div>
+    <Icon class="nIcon ff" :src="rarrow" @click="ff" />
+    <div
+      class="CalenderHeadRow"
+    >
+      <div><div class="dayHead">Mon</div></div>
+      <div><div class="dayHead">Tue</div></div>
+      <div><div class="dayHead">Wed</div></div>
+      <div><div class="dayHead">Thu</div></div>
+      <div><div class="dayHead">Fri</div></div>
+      <div><div class="dayHead">Sat</div></div>
+      <div><div class="dayHead">Sun</div></div>
+    </div>
+    <div
+      class="CalenderRow"
+      v-for="row in 6"
+      :key="row"
+    >
       <div
-        class="CalenderHeadRow"
-      >
-        <div><div class="dayHead">Mon</div></div>
-        <div><div class="dayHead">Tue</div></div>
-        <div><div class="dayHead">Wed</div></div>
-        <div><div class="dayHead">Thu</div></div>
-        <div><div class="dayHead">Fri</div></div>
-        <div><div class="dayHead">Sat</div></div>
-        <div><div class="dayHead">Sun</div></div>
-      </div>
-      <div
-        class="CalenderRow"
-        v-for="row in 6"
-        :key="row"
+        v-for="i in 7"
+        :key="i"
       >
         <div
-          v-for="i in 7"
-          :key="i"
+          :class="getDayColor(i + ((row - 1) * 7))"
+          @click="setDate(rendarDate(i + ((row - 1) * 7)))"
         >
-          <div
-            :class="getDayColor(i + ((row - 1) * 7))"
-            @click="setDate(rendarDate(i + ((row - 1) * 7)))"
-          >
-            <div class="CalenderDate">{{ rendarDate(i + ((row - 1) * 7)) }}</div>
-          </div>
+          <div class="CalenderDate">{{ rendarDate(i + ((row - 1) * 7)) }}</div>
         </div>
       </div>
     </div>
@@ -230,18 +228,10 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.Calender {
-  width: 260px;
-  height: 230px;
-  overflow: scroll;
-  overflow: hidden;
-  border-radius: 5px;
-  user-select: none;
-}
-
 .CalenderContainer {
   position: relative;
-  width: inherit;
+  width: 260px;
+  height: 230px;
   height: inherit;
   padding: 10px;
   background: #eee;
