@@ -7,7 +7,6 @@ import { computed, defineComponent } from 'vue'
 import { useStore } from 'vuex'
 import SubTitle from '@/components/Atoms/SubTitle.vue'
 
-
 export default defineComponent({
   name: 'DateText',
   components: {

@@ -28,4 +28,11 @@ export default {
   display: flex;
   flex-wrap: wrap;
 }
+
+@media screen and (max-width: 601px) {
+  .FlexBox {
+    display: block;
+  }
+}
+
 </style>
