@@ -7,12 +7,22 @@ type CalenderState = {
 
 type CalenderContext = ActionContext<CalenderState, null>
 
+const getDateStr = (sd: number): string => {
+  const dt = new Date(sd)
+  const y = dt.getFullYear()
+  const m = ('00' + (dt.getMonth() + 1)).slice(-2)
+  const d = ('00' + dt.getDate()).slice(-2)
+  const day = dt.getDay()
+  const dayStr = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][day]
+  return y + '.' + m + '.' + d + ' ( ' + dayStr + ' )'
+}
+
 export default {
   namespaced: true,
   state (): CalenderState {
     return {
-      date: 0,
-      dateStr: ''
+      date: +new Date(),
+      dateStr: getDateStr(+new Date())
     }
   },
   mutations: {
@@ -20,13 +30,7 @@ export default {
       state.date = d
     },
     setDateStr (state: CalenderState, sd: number): void {
-      const dt = new Date(sd)
-      const y = dt.getFullYear()
-      const m = ('00' + (dt.getMonth() + 1)).slice(-2)
-      const d = ('00' + dt.getDate()).slice(-2)
-      const day = dt.getDay()
-      const dayStr = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][day]
-      state.dateStr = y + '.' + m + '.' + d + ' ( ' + dayStr + ' )'
+      state.dateStr = getDateStr(sd)
     }
   },
   actions: {

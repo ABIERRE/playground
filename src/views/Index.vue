@@ -2,7 +2,7 @@
   <div class="Index">
     <MainTitle text="Calender Demo" />
 
-    <FlexBox>
+    <FlexBox :padding="false">
       <Calender />
       <FlexBox>
         <TodayBtn />

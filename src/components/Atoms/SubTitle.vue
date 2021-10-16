@@ -17,8 +17,12 @@ export default {
 
 <style scoped>
 .SubTitle {
+  width: 0 auto;
+  height: 40px;
   letter-spacing: 1px;
   font-size: 20px;
   line-height: 30px;
+  background: #fafafa;
+  padding: 5px 5px;
 }
 </style>
