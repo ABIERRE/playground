@@ -26,13 +26,12 @@ export default {
   border: none;
   outline: none;
   background: linear-gradient(165deg, #fafafa, #e1eee1);
-  box-shadow: 2px 2px 5px #00000010;
+  box-shadow: 2px 2px 4px #00000010;
   padding-left: 10px;
   padding-right: 10px;
   cursor: pointer;
   user-select: none;
   transform: scale(1, 1);
-  transition-property: transform, text-shadow box-shadow, background;transition-duration: 0.3s;transition-delay: 0;
 }
 
 .btn:hover {
@@ -43,6 +42,7 @@ export default {
     rgba(234, 240, 40, .7) -1px 0px 3px,
     rgba(234, 240, 40, .7) 0px 1px 3px,
     rgba(224, 240, 40, .7) -1px 0px 7px;
+  transition-property: transform, text-shadow box-shadow, background;transition-duration: 0.3s;transition-delay: 0;
 }
 
 .btn:disabled {

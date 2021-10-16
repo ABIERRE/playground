@@ -1,5 +1,5 @@
 <template>
-  <div class="CalenderContainer" v-show="isPage">
+  <div class="CalenderContainer">
     <Icon class="nIcon prev" :src="larrow" @click="prev" />
     <div class="CalenderHead">{{ state.dispDate }}</div>
     <Icon class="nIcon ff" :src="rarrow" @click="ff" />
@@ -42,7 +42,6 @@ import rarrow from '@/assets/rarrow.svg'
 
 import {
   reactive,
-  onMounted,
   computed,
   defineComponent,
   watch,
@@ -204,17 +203,9 @@ export default defineComponent({
       console.log(state.y, state.m)
     }
 
-    const isPage = computed(() => store.getters['system/isPage']())
-
-    onMounted(() => {
-      console.log('mounted Calender', +new Date())
-      store.dispatch('system/setPage', true)
-    })
-
     return {
       state,
       target,
-      isPage,
       rendarDate,
       getDayColor,
       setDate,

@@ -10,7 +10,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, onMounted } from 'vue'
+import { useStore } from 'vuex'
 import MainTitle from '@/components/Atoms/MainTitle.vue'
 import FlexBox from '@/components/Atoms/FlexBox.vue'
 
@@ -24,6 +25,12 @@ export default defineComponent({
     MainTitle,
     FlexBox,
     IndexController
+  },
+  setup () {
+    const store = useStore()
+    onMounted(() => {
+      store.dispatch('system/setPage', true)
+    })
   }
 })
 </script>
