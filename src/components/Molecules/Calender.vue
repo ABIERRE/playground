@@ -224,7 +224,7 @@ export default defineComponent({
   width: 260px;
   height: 228px;
   padding: 10px 10px;
-  background: #eee;
+  background: #efefef;
   box-shadow: 2px 2px 4px 0px #00000021;
   border-radius: 5px;
 }
@@ -349,11 +349,11 @@ export default defineComponent({
 }
 
 .sat {
-  background: #aaddff77;
+  background: #aaddff44;
 }
 
 .sun {
-  background: #ffaaaa77;
+  background: #ffaaaa44;
 }
 
 .exp {
