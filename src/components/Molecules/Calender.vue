@@ -231,7 +231,7 @@ export default defineComponent({
 .CalenderContainer {
   position: relative;
   width: 260px;
-  height: 230px;
+  height: 228px;
   padding: 10px 10px;
   background: #eee;
   box-shadow: 2px 2px 4px 0px #00000021;
