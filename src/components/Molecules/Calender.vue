@@ -253,7 +253,9 @@ export default defineComponent({
   top: 10px;
   right: 10px;
 }
-
+.nIcon {
+  cursor: pointer;
+}
 .nIcon:hover {
   background: #ffffaaaa;
   transform: scale(0.98, 0.98);
