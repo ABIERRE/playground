@@ -1,7 +1,7 @@
 <template>
   <div class="Index">
     <div class="IndexTitle">Calender Demo</div>
-    <Calender v-model="state.date"/>
+    <Calender />
 
     <BtnVue class="todayBtn" text="Today" @click="setToday"/>
 
@@ -13,14 +13,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue'
-import Calender from '@/components/Organisms/Calender.vue'
+import { defineComponent, computed } from 'vue'
+import Calender from '@/components/Organisms/CalenderBase.vue'
 import BtnVue from '@/components/Atoms/Btn.vue'
 
-type IndexState = {
-  date: number,
-  test: string
-}
+import { useStore } from 'vuex'
 
 export default defineComponent({
   name: 'Home',
@@ -29,17 +26,15 @@ export default defineComponent({
     BtnVue
   },
   setup () {
-    const state: IndexState = reactive({
-      date: +new Date(),
-      test: 'test'
-    })
-
+    const store = useStore()
     const setToday = (): void => {
-      state.date = +new Date()
+      store.dispatch('calender/setDate', +new Date())
     }
+    setToday()
 
+    const sd = computed(() => store.getters['calender/getDate']())
     const getFormattedDate = (): string => {
-      const dt = new Date(state.date)
+      const dt = new Date(sd.value)
       const y = dt.getFullYear()
       const m = ('00' + (dt.getMonth() + 1)).slice(-2)
       const d = ('00' + dt.getDate()).slice(-2)
@@ -49,7 +44,6 @@ export default defineComponent({
     }
 
     return {
-      state,
       setToday,
       getFormattedDate
     }

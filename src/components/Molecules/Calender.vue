@@ -1,51 +1,46 @@
 <template>
   <div class="Calender">
-    <Pop>
-      <div class="CalenderContainer" v-show="isPage">
-        <Icon class="nIcon prev" :src="larrow" @click="prev" />
-        <div class="CalenderHead">{{ state.dispDate }}</div>
-        <Icon class="nIcon ff" :src="rarrow" @click="ff" />
+    <div class="CalenderContainer" v-show="isPage">
+      <Icon class="nIcon prev" :src="larrow" @click="prev" />
+      <div class="CalenderHead">{{ state.dispDate }}</div>
+      <Icon class="nIcon ff" :src="rarrow" @click="ff" />
+      <div
+        class="CalenderHeadRow"
+      >
+        <div><div class="dayHead">Mon</div></div>
+        <div><div class="dayHead">Tue</div></div>
+        <div><div class="dayHead">Wed</div></div>
+        <div><div class="dayHead">Thu</div></div>
+        <div><div class="dayHead">Fri</div></div>
+        <div><div class="dayHead">Sat</div></div>
+        <div><div class="dayHead">Sun</div></div>
+      </div>
+      <div
+        class="CalenderRow"
+        v-for="row in 6"
+        :key="row"
+      >
         <div
-          class="CalenderHeadRow"
-        >
-          <div><div class="dayHead">Mon</div></div>
-          <div><div class="dayHead">Tue</div></div>
-          <div><div class="dayHead">Wed</div></div>
-          <div><div class="dayHead">Thu</div></div>
-          <div><div class="dayHead">Fri</div></div>
-          <div><div class="dayHead">Sat</div></div>
-          <div><div class="dayHead">Sun</div></div>
-        </div>
-        <div
-          class="CalenderRow"
-          v-for="row in 6"
-          :key="row"
+          v-for="i in 7"
+          :key="i"
         >
           <div
-            v-for="i in 7"
-            :key="i"
+            :class="getDayColor(i + ((row - 1) * 7))"
+            @click="setDate(rendarDate(i + ((row - 1) * 7)))"
           >
-            <div
-              :class="getDayColor(i + ((row - 1) * 7))"
-              @click="setDate(rendarDate(i + ((row - 1) * 7)))"
-            >
-              <div class="CalenderDate">{{ rendarDate(i + ((row - 1) * 7)) }}</div>
-            </div>
+            <div class="CalenderDate">{{ rendarDate(i + ((row - 1) * 7)) }}</div>
           </div>
         </div>
       </div>
-    </Pop>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { useStore } from 'vuex'
 import Icon from '@/components/Atoms/Icon.vue'
-
 import larrow from '@/assets/larrow.svg'
 import rarrow from '@/assets/rarrow.svg'
-
-import Pop from '@/components/Transition/Pop.vue'
 
 import {
   reactive,
@@ -68,19 +63,10 @@ type CalenderState = {
 export default defineComponent({
   name: 'Calender',
   components: {
-    Icon,
-    Pop
+    Icon
   },
-  props: {
-    modelValue: {
-      type: Number,
-      required: false,
-      default: +new Date()
-    }
-  },
-  setup (props, ctx) {
+  setup () {
     const store = useStore()
-
     const state: CalenderState = reactive({
       dispDate: '',
       date: +new Date(),
@@ -90,12 +76,7 @@ export default defineComponent({
       dateMax: 0
     })
 
-    const tdate = computed({
-      get: () => props.modelValue,
-      set: v => ctx.emit('update:modelValue', v)
-    })
-
-    state.date = +props.modelValue || +new Date()
+    const tdate = computed(() => store.getters['calender/getDate']())
 
     const target = reactive({
       y: 0,
@@ -117,7 +98,7 @@ export default defineComponent({
       const val = parseInt(date)
       if (isNaN(val)) return
       const d = +new Date(state.y, state.m - 1, val, 0, 0, 0)
-      tdate.value = d
+      store.dispatch('calender/setDate', d)
     }
 
     const initCalender = (): void => {

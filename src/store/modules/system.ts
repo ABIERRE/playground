@@ -9,7 +9,7 @@ type SystemState = {
   route: string,
   page: StringKeyObject,
   x: number,
-  y: number
+  y: number,
 }
 
 type xyData = {
