@@ -4,12 +4,16 @@
   </button>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   name: 'btn',
-  props: [
-    'text'
-  ]
+  props: {
+    text: {
+      type: String,
+      required: false,
+      default: 'Btn'
+    }
+  }
 }
 </script>
 <style scoped>

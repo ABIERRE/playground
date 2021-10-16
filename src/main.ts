@@ -11,7 +11,7 @@ app.config.performance = true
 app.config.warnHandler = () => undefined
 app.config.errorHandler = () => undefined
 
-const isDevelopment = false
+const isDevelopment = true
 if (!isDevelopment) {
   console.log = () => { return false }
   console.warn = () => { return false }
