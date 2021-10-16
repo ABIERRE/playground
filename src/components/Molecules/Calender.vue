@@ -232,10 +232,10 @@ export default defineComponent({
   position: relative;
   width: 260px;
   height: 230px;
-  height: inherit;
-  padding: 10px;
+  padding: 10px 10px;
   background: #eee;
   box-shadow: 2px 2px 4px 0px #00000021;
+  border-radius: 5px;
 }
 
 .CalenderHead {
