@@ -24,5 +24,6 @@ export default {
   line-height: 30px;
   background: none;
   padding: 5px 5px;
+  margin-top: 10px;
 }
 </style>

@@ -7,14 +7,6 @@
     <VerticalInOut
       :delay="500"
     >
-      <SubTitle
-        v-show="isPage"
-        text="Target Date: "
-      />
-    </VerticalInOut>
-    <VerticalInOut
-      :delay="500"
-    >
       <DateText
         v-show="isPage"
       />
@@ -26,7 +18,6 @@
 import { computed, defineComponent } from 'vue'
 import { useStore } from 'vuex'
 
-import SubTitle from '@/components/Atoms/SubTitle.vue'
 import TodayBtn from '@/components/Molecules/TodayBtn.vue'
 import DateText from '@/components/Molecules/DateText.vue'
 import VerticalInOut from '../Transition/VerticalInOut.vue'
@@ -34,7 +25,6 @@ import VerticalInOut from '../Transition/VerticalInOut.vue'
 export default defineComponent({
   name: 'IndexController',
   components: {
-    SubTitle,
     TodayBtn,
     DateText,
     VerticalInOut
