@@ -4,36 +4,26 @@
 
     <FlexBox :padding="false">
       <Calender />
-      <FlexBox>
-        <TodayBtn />
-        <SubTitle
-          text="Target Date: "
-        />
-        <DateText />
-      </FlexBox>
+      <IndexController />
     </FlexBox>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import Calender from '@/components/Organisms/CalenderBase.vue'
 import MainTitle from '@/components/Atoms/MainTitle.vue'
-import SubTitle from '@/components/Atoms/SubTitle.vue'
-
 import FlexBox from '@/components/Atoms/FlexBox.vue'
-import TodayBtn from '@/components/Molecules/TodayBtn.vue'
-import DateText from '@/components/Molecules/DateText.vue'
+
+import Calender from '@/components/Organisms/CalenderBase.vue'
+import IndexController from '@/components/Organisms/IndexController.vue'
 
 export default defineComponent({
   name: 'Home',
   components: {
     Calender,
     MainTitle,
-    SubTitle,
     FlexBox,
-    TodayBtn,
-    DateText
+    IndexController
   }
 })
 </script>

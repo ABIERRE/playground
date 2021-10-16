@@ -22,7 +22,7 @@ export default {
   letter-spacing: 1px;
   font-size: 20px;
   line-height: 30px;
-  background: #fafafa;
+  background: none;
   padding: 5px 5px;
 }
 </style>

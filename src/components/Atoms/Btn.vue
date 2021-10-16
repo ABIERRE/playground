@@ -25,8 +25,8 @@ export default {
   border-radius: 5px;
   border: none;
   outline: none;
-  background: linear-gradient(165deg, #fff, #fafffa);
-  box-shadow: 2px 2px 4px #00000018;
+  background: linear-gradient(165deg, #fafafa, #e1eee1);
+  box-shadow: 2px 2px 5px #00000010;
   padding-left: 10px;
   padding-right: 10px;
   cursor: pointer;
@@ -37,7 +37,7 @@ export default {
 
 .btn:hover {
   font-weight: 300;
-  box-shadow: 0px 0px 0px 0px #00000044;
+  box-shadow: 0px 0px 0px 0px #00000000;
   text-shadow:
     rgba(234, 245, 40, .7) 1px 0px 7px,
     rgba(234, 240, 40, .7) -1px 0px 3px,
