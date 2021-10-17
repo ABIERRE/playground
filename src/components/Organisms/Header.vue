@@ -3,10 +3,11 @@
     <router-link to="/">
       <MainTitle :text="rname" />
     </router-link>
-
-    <div class="route" v-show="route !== '/calender'">
-      <router-link to="/calender">Calender</router-link>
-    </div>
+    <Hio>
+      <div class="route" v-show="route !== '/calender'">
+        <router-link to="/calender">Calender</router-link>
+      </div>
+    </Hio>
   </div>
 </template>
 
@@ -14,11 +15,13 @@
 import { computed, defineComponent, watch } from 'vue'
 import { useStore } from 'vuex'
 import MainTitle from '@/components/Atoms/MainTitle.vue'
+import Hio from '@/components/Transition/HorizontalInOut.vue'
 
 export default defineComponent({
   name: 'Header',
   components: {
-    MainTitle
+    MainTitle,
+    Hio
   },
   setup () {
     const store = useStore()
