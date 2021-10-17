@@ -349,11 +349,11 @@ export default defineComponent({
 }
 
 .sat {
-  background: #aaddff44;
+  background: #f2fbfd;
 }
 
 .sun {
-  background: #ffaaaa44;
+  background: #fdeeec;
 }
 
 .exp {
