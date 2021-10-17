@@ -1,6 +1,18 @@
 <template>
+  <Header />
   <router-view/>
 </template>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+import Header from '@/components/Organisms/Header.vue'
+export default defineComponent({
+  name: 'App',
+  components: {
+    Header
+  }
+})
+</script>
 
 <style>
 @import url(https://fonts.googleapis.com/earlyaccess/mplus1p.css);
