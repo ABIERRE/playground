@@ -22,12 +22,17 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
+const nextStep = (next: () => void, path: string, name: string): void => {
+  next()
+  store.dispatch('system/setRoute', path)
+  store.dispatch('system/setRouteName', name)
+}
 router.beforeEach((to, from, next) => {
   console.log(from, to)
   store.dispatch('system/setPage', false)
-  store.dispatch('system/setRoute', to.path)
-  store.dispatch('system/setRouteName', to.name)
-  setTimeout(next, 500)
+  const name = typeof to.name === 'string' ? to.name : ''
+  setTimeout(() => nextStep(next, to.path, name), 600)
 })
 
 export default router

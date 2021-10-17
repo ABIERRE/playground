@@ -31,28 +31,27 @@ export default defineComponent({
     const isPage = computed(() => store.getters['system/isPage']())
     return {
       enter (el: HTMLElement, done: () => void): void {
-        console.log('enter', el)
-        console.log(isPage.value)
         if (props.stop === undefined) {
           if (!isPage.value) return
         } else {
           if (props.stop) return
         }
-        const delay = props.delay || 100
+
+        const delay = props.delay || 200
         var tl = V.timeline()
         tl.add({
           targets: el,
-          scale: [0, 1.2],
+          scale: 0,
           easing: 'easeOutQuad',
-          duration: 280,
-          delay: delay * Math.random()
+          duration: 0
         })
         tl.add({
           targets: el,
-          scale: [1.2, 1],
+          scale: [0, 1.1, 1],
           easing: 'easeOutQuad',
-          duration: 300,
-          complete (): void {
+          duration: 500,
+          delay: delay,
+          computed: () => {
             el.removeAttribute('style')
             done()
           }
@@ -63,7 +62,7 @@ export default defineComponent({
         var tl = V.timeline()
         tl.add({
           targets: el,
-          scale: [1, 1.2],
+          scale: [1, 1.1],
           easing: 'easeOutQuad',
           duration: 200,
           delay: 0
