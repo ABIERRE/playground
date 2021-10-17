@@ -38,20 +38,20 @@ export default defineComponent({
         } else {
           if (props.stop) return
         }
-        const delay = props.delay || 200
+        const delay = props.delay || 100
         var tl = V.timeline()
         tl.add({
           targets: el,
           scale: [0, 1.2],
           easing: 'easeOutQuad',
-          duration: 150,
+          duration: 200,
           delay: delay * Math.random()
         })
         tl.add({
           targets: el,
           scale: [1.2, 1],
           easing: 'easeOutQuad',
-          duration: 100,
+          duration: 300,
           complete (): void {
             // el.removeAttribute('style')
             done()
@@ -65,14 +65,14 @@ export default defineComponent({
           targets: el,
           scale: [1, 1.2],
           easing: 'easeOutQuad',
-          duration: 150,
+          duration: 200,
           delay: 0
         })
         tl.add({
           targets: el,
           scale: [1, 0],
           easing: 'easeOutQuad',
-          duration: 100,
+          duration: 200,
           delay: 0,
           complete () {
             done()
