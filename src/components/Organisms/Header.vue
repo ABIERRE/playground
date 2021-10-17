@@ -2,12 +2,12 @@
   <div class="Header">
     <router-link to="/">
       <FlexBox :padding="false">
-      <Icon
-        :size="27"
-        :src="homeIcon"
-        v-show="route !== '/' && state.xy.x > 600"
-      />
-      <MainTitle class="MainTitle" :text="rname" />
+        <MainTitle class="MainTitle" :text="rname" />
+        <Icon
+          :size="27"
+          :src="homeIcon"
+          v-show="route !== '/' && state.xy.x > 600"
+        />
       </FlexBox>
     </router-link>
 
@@ -114,7 +114,7 @@ export default defineComponent({
 
 .MainTitle {
   margin-top: 14px;
-  margin-left: 5px;
+  margin-right: 5px;
 }
 
 </style>

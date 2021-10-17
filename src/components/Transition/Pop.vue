@@ -44,7 +44,7 @@ export default defineComponent({
           targets: el,
           scale: [0, 1.2],
           easing: 'easeOutQuad',
-          duration: 200,
+          duration: 280,
           delay: delay * Math.random()
         })
         tl.add({
@@ -53,7 +53,7 @@ export default defineComponent({
           easing: 'easeOutQuad',
           duration: 300,
           complete (): void {
-            // el.removeAttribute('style')
+            el.removeAttribute('style')
             done()
           }
         })
