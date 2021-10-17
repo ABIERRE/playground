@@ -35,8 +35,8 @@ export default defineComponent({
 .Index {
   width: 0 auto;
   height: 0 auto;
-  padding: 20px;
-  background: #fcfcfc;
+  padding-left: 20px;
+  background: none;
 }
 
 .todayBtn {

@@ -24,10 +24,10 @@ const router = createRouter({
 })
 router.beforeEach((to, from, next) => {
   console.log(from, to)
+  store.dispatch('system/setPage', false)
   store.dispatch('system/setRoute', to.path)
   store.dispatch('system/setRouteName', to.name)
-  store.dispatch('system/setPage', false)
-  setTimeout(next, 600)
+  setTimeout(next, 500)
 })
 
 export default router

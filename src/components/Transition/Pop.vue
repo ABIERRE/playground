@@ -72,7 +72,7 @@ export default defineComponent({
           targets: el,
           scale: [1, 0],
           easing: 'easeOutQuad',
-          duration: 200,
+          duration: 300,
           delay: 0,
           complete () {
             done()

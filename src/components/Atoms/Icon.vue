@@ -1,6 +1,7 @@
 <template>
   <div
     class="IconBase"
+    :style="'width: ' + size * 1.5 + 'px; height: ' + size * 1.5 + 'px;' + 'margin-top: ' + size / 2 + 'px;'"
   >
     <img
       class="Icon"
@@ -30,7 +31,7 @@ export default defineComponent({
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: #ffffff77;
+  background: linear-gradient(165deg, #fafafa, #efefef);
   padding-top: 5px;
   user-select: none;
 }

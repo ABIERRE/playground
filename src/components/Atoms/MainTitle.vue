@@ -20,6 +20,6 @@ export default {
   font-size: 30px;
   line-height: 40px;
   margin-bottom: 20px;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
 }
 </style>

@@ -1,13 +1,14 @@
 <template>
   <div class="Header">
     <router-link to="/">
-      <MainTitle class="InlineBlock" :text="rname" />
+      <FlexBox :padding="false">
       <Icon
-        class="InlineBlock"
         :size="27"
         :src="homeIcon"
-        v-show="route !== '/'"
+        v-show="route !== '/' && state.xy.x > 600"
       />
+      <MainTitle class="MainTitle" :text="rname" />
+      </FlexBox>
     </router-link>
 
     <Hio :delay="300" :length="60">
@@ -20,36 +21,79 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, watch } from 'vue'
+import { computed, defineComponent, onBeforeUnmount, onMounted, reactive } from 'vue'
 import { useStore } from 'vuex'
 import MainTitle from '@/components/Atoms/MainTitle.vue'
 import Hio from '@/components/Transition/HorizontalInOut.vue'
 
 import homeIcon from '@/assets/home.svg'
 import Icon from '@/components/Atoms/Icon.vue'
+import FlexBox from '@/components/Atoms/FlexBox.vue'
 
+type XY = {
+  x: number,
+  y: number
+}
+
+type HeaderState = {
+  xy: XY,
+  timer?: number
+}
 export default defineComponent({
   name: 'Header',
   components: {
     MainTitle,
     Hio,
-    Icon
+    Icon,
+    FlexBox
   },
   setup () {
     const store = useStore()
     const route = computed(() => store.getters['system/getRoutePath']())
     const rname = computed(() => store.getters['system/getRouteName']())
-    console.log(route.value, rname.value)
 
-    watch(() => route.value, () => {
-      console.log(route.value)
-      console.log(rname.value)
+    const state: HeaderState = reactive({
+      xy: {
+        x: 0,
+        y: 0
+      },
+      timer: undefined
+    })
+
+    const handleResizeCore = (): void => {
+      console.log('called handleResizeCore')
+      const x = window.innerWidth
+      const y = window.innerHeight
+      const xy = {
+        x: x,
+        y: y
+      }
+      state.xy = xy
+      console.log(x)
+      store.dispatch('system/setXY', xy)
+    }
+
+    const handleResize = (): void => {
+      if (state.timer !== undefined) clearTimeout(state.timer)
+      state.timer = setTimeout(handleResizeCore, 100)
+    }
+
+    handleResizeCore()
+
+    onMounted(() => {
+      handleResize()
+      window.addEventListener('resize', handleResize)
+    })
+
+    onBeforeUnmount((): void => {
+      window.removeEventListener('resize', handleResize)
     })
 
     return {
       route,
       rname,
-      homeIcon
+      homeIcon,
+      state
     }
   }
 })
@@ -60,6 +104,7 @@ export default defineComponent({
   padding-left: 20px;
   font-size: 30px;
   height: 0 auto;
+  background: none;
 }
 
 .route {
@@ -67,8 +112,9 @@ export default defineComponent({
   letter-spacing: 1px;
 }
 
-.InlineBlock {
-  display: inline-block;
-  margin-right: 10px;
+.MainTitle {
+  margin-top: 14px;
+  margin-left: 5px;
 }
+
 </style>
