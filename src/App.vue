@@ -66,6 +66,6 @@ html, body {
   margin-right: auto;
   height: 0 auto;
   padding-top: 40px;
-  background: none;
+  background: #fcfcfc;
 }
 </style>

@@ -36,7 +36,7 @@ export default defineComponent({
   width: 0 auto;
   height: 0 auto;
   padding: 20px;
-  background: #fff;
+  background: #fcfcfc;
 }
 
 .todayBtn {

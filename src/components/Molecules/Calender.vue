@@ -224,13 +224,14 @@ export default defineComponent({
   width: 260px;
   height: 228px;
   padding: 10px 10px;
-  background: #efefef;
-  box-shadow: 2px 2px 4px 0px #00000021;
+  background: #fff;
+  box-shadow: 2px 2px 4px 0px #00000011;
+  border: 1px solid #fafafa;
   border-radius: 5px;
 }
 
 .CalenderHead {
-  background: #fafafa;
+  background: #fcfcfc;
   width: 151px;
   height: 30px;
   padding: 6px;

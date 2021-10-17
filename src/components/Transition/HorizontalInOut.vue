@@ -18,7 +18,7 @@ export default defineComponent({
     length: {
       type: Number,
       required: false,
-      default: 200
+      default: 60
     },
     delay: {
       type: Number,
@@ -37,7 +37,7 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const len = props.length || 200
+    const len = props.length || 60
     const bounce = len / 10
     const direction = props.direction === 'left' ? '-' : '+'
     const reverse = props.direction === 'left' ? '+' : '-'

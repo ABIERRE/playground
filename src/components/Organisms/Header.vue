@@ -10,7 +10,7 @@
       />
     </router-link>
 
-    <Hio :delay="300">
+    <Hio :delay="300" :length="60">
       <div class="route" v-show="route !== '/calender'">
         <router-link to="/calender">Calender</router-link>
       </div>
