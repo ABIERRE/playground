@@ -7,7 +7,7 @@ import Calender from '@/views/Calender.vue'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'Index',
+    name: 'Home',
     component: Index
   },
   {
@@ -24,6 +24,8 @@ const router = createRouter({
 })
 router.beforeEach((to, from, next) => {
   console.log(from, to)
+  store.dispatch('system/setRoute', to.path)
+  store.dispatch('system/setRouteName', to.name)
   store.dispatch('system/setPage', false)
   setTimeout(next, 600)
 })

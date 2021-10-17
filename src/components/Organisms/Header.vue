@@ -1,12 +1,18 @@
 <template>
   <div class="Header">
-    <MainTitle :text="route.path" />
+    <router-link to="/">
+      <MainTitle :text="rname" />
+    </router-link>
+
+    <div class="route" v-show="route !== '/calender'">
+      <router-link to="/calender">Calender</router-link>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { computed, defineComponent, watch } from 'vue'
+import { useStore } from 'vuex'
 import MainTitle from '@/components/Atoms/MainTitle.vue'
 
 export default defineComponent({
@@ -15,12 +21,17 @@ export default defineComponent({
     MainTitle
   },
   setup () {
-    const route = useRoute()
-    watch(() => route.path, () => {
-      console.log('header route watcher => ', route.path)
+    const store = useStore()
+    const route = computed(() => store.getters['system/getRoutePath']())
+    const rname = computed(() => store.getters['system/getRouteName']())
+    console.log(route.value, rname.value)
+
+    watch(() => route.value, () => {
+      console.log(route.value)
+      console.log(rname.value)
     })
 
-    return { route }
+    return { route, rname }
   }
 })
 </script>
@@ -29,5 +40,9 @@ export default defineComponent({
 .Header {
   padding-left: 20px;
   font-size: 30px;
+}
+
+.route {
+  font-size: 11px;
 }
 </style>
