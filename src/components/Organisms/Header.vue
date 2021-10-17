@@ -1,13 +1,21 @@
 <template>
   <div class="Header">
     <router-link to="/">
-      <MainTitle :text="rname" />
+      <MainTitle class="InlineBlock" :text="rname" />
+      <Icon
+        class="InlineBlock"
+        :size="27"
+        :src="homeIcon"
+        v-show="route !== '/'"
+      />
     </router-link>
-    <Hio>
+
+    <Hio :delay="300">
       <div class="route" v-show="route !== '/calender'">
         <router-link to="/calender">Calender</router-link>
       </div>
     </Hio>
+
   </div>
 </template>
 
@@ -17,11 +25,15 @@ import { useStore } from 'vuex'
 import MainTitle from '@/components/Atoms/MainTitle.vue'
 import Hio from '@/components/Transition/HorizontalInOut.vue'
 
+import homeIcon from '@/assets/home.svg'
+import Icon from '@/components/Atoms/Icon.vue'
+
 export default defineComponent({
   name: 'Header',
   components: {
     MainTitle,
-    Hio
+    Hio,
+    Icon
   },
   setup () {
     const store = useStore()
@@ -34,7 +46,11 @@ export default defineComponent({
       console.log(rname.value)
     })
 
-    return { route, rname }
+    return {
+      route,
+      rname,
+      homeIcon
+    }
   }
 })
 </script>
@@ -43,9 +59,16 @@ export default defineComponent({
 .Header {
   padding-left: 20px;
   font-size: 30px;
+  height: 0 auto;
 }
 
 .route {
-  font-size: 11px;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.InlineBlock {
+  display: inline-block;
+  margin-right: 10px;
 }
 </style>

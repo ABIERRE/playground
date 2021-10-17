@@ -19,7 +19,7 @@ export default {
 .MainTitle {
   font-size: 30px;
   line-height: 40px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   letter-spacing: 3px;
 }
 </style>

@@ -39,13 +39,6 @@ export default defineComponent({
   background: #fff;
 }
 
-.IndexTitle {
-  font-size: 30px;
-  line-height: 40px;
-  margin-bottom: 40px;
-  letter-spacing: 3px;
-}
-
 .todayBtn {
   margin-right: 20px;
 }
