@@ -14,7 +14,7 @@ export default defineComponent({
   },
   setup () {
     const store = useStore()
-    const dateStr = computed(() => store.getters['calender/getDateStr']())
+    const dateStr = computed(() => store.getters['calendar/getDateStr']())
     return { dateStr }
   }
 })

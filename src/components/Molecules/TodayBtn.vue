@@ -19,7 +19,7 @@ export default defineComponent({
   setup () {
     const store = useStore()
     const setToday = (): void => {
-      store.dispatch('calender/setDate', +new Date())
+      store.dispatch('calendar/setDate', +new Date())
     }
 
     return {

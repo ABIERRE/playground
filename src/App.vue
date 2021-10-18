@@ -58,6 +58,7 @@ html, body {
 #app {
   font-family: "TsukuARdGothic-Regular", "M PLUS 1p", "Yu Gothic", sans-serif;
   display: block;
+  position: relative;
   color: #2c3e50;
   width: 100%;
   height: 100%;
