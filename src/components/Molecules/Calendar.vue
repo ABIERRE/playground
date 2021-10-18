@@ -73,7 +73,7 @@ export default defineComponent({
       dateMax: 0
     })
 
-    const tdate = computed(() => store.getters['calender/getDate']())
+    const tdate = computed(() => store.getters['calendar/getDate']())
 
     const target = reactive({
       y: 0,
@@ -95,13 +95,13 @@ export default defineComponent({
       const val = parseInt(date)
       if (isNaN(val)) return
       const d = +new Date(state.y, state.m - 1, val, 0, 0, 0)
-      store.dispatch('calender/setDate', d)
+      store.dispatch('calendar/setDate', d)
     }
 
     const initCalendar = (): void => {
       console.log('called initCalendar')
       const dt = new Date(tdate.value)
-      console.log('target calender', dt)
+      console.log('target calendar', dt)
 
       const y = dt.getFullYear()
       const m = dt.getMonth() + 1

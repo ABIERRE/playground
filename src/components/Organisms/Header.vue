@@ -15,7 +15,7 @@
     </router-link>
 
     <Hio :delay="0" :length="60" v-if="route !== ''">
-      <div class="route" v-if="route !== '/calender' && state.isReady">
+      <div class="route" v-if="route !== '/calendar' && state.isReady">
         <router-link to="/calendar">Calendar</router-link>
       </div>
     </Hio>
@@ -134,7 +134,7 @@ export default defineComponent({
 
 .Linker {
   position: absolute;
-  top: 10px;
+  top: 5px;
   left: 20px;
   height: 30px;
   font-size: 12px;
