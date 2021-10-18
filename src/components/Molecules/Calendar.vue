@@ -6,13 +6,13 @@
     <div
       class="CalendarHeadRow"
     >
+      <div><div class="dayHead">Sun</div></div>
       <div><div class="dayHead">Mon</div></div>
       <div><div class="dayHead">Tue</div></div>
       <div><div class="dayHead">Wed</div></div>
       <div><div class="dayHead">Thu</div></div>
       <div><div class="dayHead">Fri</div></div>
       <div><div class="dayHead">Sat</div></div>
-      <div><div class="dayHead">Sun</div></div>
     </div>
     <div
       class="CalendarRow"
@@ -156,6 +156,11 @@ export default defineComponent({
       const dayStart = st.getDay()
       const dateMax = ed.getDate()
 
+      console.log('start', st)
+      console.log('start', ed)
+      console.log('dateMax', dateMax)
+      console.log('dayStart', dayStart)
+
       state.dateMax = dateMax
       state.dayStart = dayStart
 
@@ -163,14 +168,16 @@ export default defineComponent({
     })
 
     const rendarDate = (i: number): string => {
-      const d = i - (state.dayStart) + 1
-      return d > 0 && d <= state.dateMax ? d + '' : ''
+      const d = i - state.dayStart
+      const str = d > 0 && d <= state.dateMax ? d + '' : ''
+      console.log(str, i, state.dayStart)
+      return str
     }
 
     const diffDate = (d: number): boolean => {
       if (target.y !== state.y) return false
       if (target.m !== state.m) return false
-      return target.d === d - state.dayStart + 1
+      return target.d === d - state.dayStart
     }
 
     const getDayColor = (i: number): string => {
@@ -179,9 +186,9 @@ export default defineComponent({
       if (cd === '0') return 'blankDayBox'
       if (bool) return 'dayBox'
       if (diffDate(i)) return 'dayBox tdate'
-      if (i === 6) return 'dayBox sat'
-      if (i % 7 === 6) return 'dayBox sat'
-      if (i % 7 === 0) return 'dayBox sun'
+      if (i === 7) return 'dayBox sat'
+      if (i % 7 === 1) return 'dayBox sun'
+      if (i % 7 === 0) return 'dayBox sat'
       return 'dayBox'
     }
 
