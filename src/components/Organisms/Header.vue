@@ -1,6 +1,6 @@
 <template>
   <div class="Header">
-    <Hio :delay="100" :length="60">
+    <Hio :delay="600" :length="60">
       <div class="Linker" v-if="route !== '/' && state.isReady">
       <router-link to="/">
         <FlexBox>
@@ -130,6 +130,7 @@ export default defineComponent({
   line-height: 50px;
   vertical-align: top;
   margin-right: 5px;
+  letter-spacing: 1px;
 }
 
 .Linker {

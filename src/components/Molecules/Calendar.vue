@@ -224,9 +224,8 @@ export default defineComponent({
   width: 260px;
   height: 228px;
   padding: 10px 10px;
-  background: #fdfdfd;
+  background: #f4f4f4;
   box-shadow: 2px 2px 4px 0px #00000011;
-  border: 1px solid #fafafa;
   border-radius: 5px;
 }
 
