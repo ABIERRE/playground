@@ -1,14 +1,14 @@
 <template>
   <div class="CalendarController">
     <VerticalInOut>
-      <TodayBtn v-if="isPage"/>
+      <TodayBtn v-show="isPage"/>
     </VerticalInOut>
 
     <VerticalInOut
       :delay="500"
     >
       <DateText
-        v-if="isPage"
+        v-show="isPage"
       />
     </VerticalInOut>
   </div>

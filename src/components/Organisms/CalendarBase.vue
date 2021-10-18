@@ -1,6 +1,6 @@
 <template>
   <div class="CalendarBase">
-    <Pop>
+    <Pop :delay="100">
       <Calendar v-show="isPage" />
     </Pop>
   </div>
