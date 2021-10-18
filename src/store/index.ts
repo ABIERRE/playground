@@ -1,10 +1,10 @@
 import { createStore } from 'vuex'
 import system from '@/store/modules/system'
-import calender from '@/store/modules/calender'
+import calendar from '@/store/modules/calendar'
 
 export default createStore({
   modules: {
     system,
-    calender
+    calendar
   }
 })

@@ -1,11 +1,11 @@
 import { ActionContext } from 'vuex'
 
-type CalenderState = {
+type CalendarState = {
   date: number,
   dateStr: string
 }
 
-type CalenderContext = ActionContext<CalenderState, null>
+type CalendarContext = ActionContext<CalendarState, null>
 
 const getDateStr = (sd: number): string => {
   const dt = new Date(sd)
@@ -19,31 +19,31 @@ const getDateStr = (sd: number): string => {
 
 export default {
   namespaced: true,
-  state (): CalenderState {
+  state (): CalendarState {
     return {
       date: +new Date(),
       dateStr: getDateStr(+new Date())
     }
   },
   mutations: {
-    setDate (state: CalenderState, d: number): void {
+    setDate (state: CalendarState, d: number): void {
       state.date = d
     },
-    setDateStr (state: CalenderState, sd: number): void {
+    setDateStr (state: CalendarState, sd: number): void {
       state.dateStr = getDateStr(sd)
     }
   },
   actions: {
-    setDate (ctx: CalenderContext, d: number): void {
+    setDate (ctx: CalendarContext, d: number): void {
       ctx.commit('setDate', d)
       ctx.commit('setDateStr', d)
     }
   },
   getters: {
-    getDate: (state: CalenderState) => (): number => {
+    getDate: (state: CalendarState) => (): number => {
       return state.date || 0
     },
-    getDateStr: (state: CalenderState) => (): string => {
+    getDateStr: (state: CalendarState) => (): string => {
       return state.dateStr || ''
     }
   }

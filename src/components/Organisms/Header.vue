@@ -1,7 +1,7 @@
 <template>
   <div class="Header">
     <Hio :delay="100" :length="60">
-      <div class="Linker" v-show="route !== '/'">
+      <div class="Linker" v-if="route !== '/' && state.isReady">
       <router-link to="/">
         <FlexBox>
         <Icon class="InlineBlock" :src="HomeIcon" :size="20" />
@@ -14,9 +14,9 @@
       <MainTitle class="MainTitle" :text="rname" />
     </router-link>
 
-    <Hio :delay="100" :length="60">
-      <div class="route" v-show="route !== '/calender' && isPage">
-        <router-link to="/calender">Calender</router-link>
+    <Hio :delay="0" :length="60" v-if="route !== ''">
+      <div class="route" v-if="route !== '/calender' && state.isReady">
+        <router-link to="/calendar">Calendar</router-link>
       </div>
     </Hio>
 
@@ -38,7 +38,8 @@ type XY = {
 
 type HeaderState = {
   xy: XY,
-  timer?: number
+  timer?: number,
+  isReady: boolean
 }
 export default defineComponent({
   name: 'Header',
@@ -58,7 +59,8 @@ export default defineComponent({
         x: 0,
         y: 0
       },
-      timer: undefined
+      timer: undefined,
+      isReady: false
     })
 
     const handleResizeCore = (): void => {
@@ -82,6 +84,7 @@ export default defineComponent({
     handleResizeCore()
 
     onMounted(() => {
+      state.isReady = true
       handleResize()
       window.addEventListener('resize', handleResize)
     })
@@ -117,6 +120,8 @@ export default defineComponent({
 .MainTitle {
   margin-top: 14px;
   margin-right: 5px;
+  text-shadow: 3px 3px 3px #ddd;
+  letter-spacing: 3px;
 }
 
 .InlineBlock {

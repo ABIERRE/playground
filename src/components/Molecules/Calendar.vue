@@ -1,10 +1,10 @@
 <template>
-  <div class="CalenderContainer">
+  <div class="CalendarContainer">
     <Icon class="nIcon prev" :src="larrow" @click="prev" />
-    <div class="CalenderHead">{{ state.dispDate }}</div>
+    <div class="CalendarHead">{{ state.dispDate }}</div>
     <Icon class="nIcon ff" :src="rarrow" @click="ff" />
     <div
-      class="CalenderHeadRow"
+      class="CalendarHeadRow"
     >
       <div><div class="dayHead">Mon</div></div>
       <div><div class="dayHead">Tue</div></div>
@@ -15,7 +15,7 @@
       <div><div class="dayHead">Sun</div></div>
     </div>
     <div
-      class="CalenderRow"
+      class="CalendarRow"
       v-for="row in 6"
       :key="row"
     >
@@ -27,7 +27,7 @@
           :class="getDayColor(i + ((row - 1) * 7))"
           @click="setDate(rendarDate(i + ((row - 1) * 7)))"
         >
-          <div class="CalenderDate">{{ rendarDate(i + ((row - 1) * 7)) }}</div>
+          <div class="CalendarDate">{{ rendarDate(i + ((row - 1) * 7)) }}</div>
         </div>
       </div>
     </div>
@@ -48,7 +48,7 @@ import {
   watchEffect
 } from 'vue'
 
-type CalenderState = {
+type CalendarState = {
   dispDate: string,
   date: number,
   y: number,
@@ -58,13 +58,13 @@ type CalenderState = {
 }
 
 export default defineComponent({
-  name: 'Calender',
+  name: 'Calendar',
   components: {
     Icon
   },
   setup () {
     const store = useStore()
-    const state: CalenderState = reactive({
+    const state: CalendarState = reactive({
       dispDate: '',
       date: +new Date(),
       y: 0,
@@ -98,8 +98,8 @@ export default defineComponent({
       store.dispatch('calender/setDate', d)
     }
 
-    const initCalender = (): void => {
-      console.log('called initCalender')
+    const initCalendar = (): void => {
+      console.log('called initCalendar')
       const dt = new Date(tdate.value)
       console.log('target calender', dt)
 
@@ -142,7 +142,7 @@ export default defineComponent({
       if (target.m !== state.m) state.m = m + 1
     }
 
-    initCalender()
+    initCalendar()
     setTarget()
 
     watch(() => tdate.value, ():void => {
@@ -219,7 +219,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.CalenderContainer {
+.CalendarContainer {
   position: relative;
   width: 260px;
   height: 228px;
@@ -230,7 +230,7 @@ export default defineComponent({
   border-radius: 5px;
 }
 
-.CalenderHead {
+.CalendarHead {
   background: #fafafa;
   width: 151px;
   height: 30px;
@@ -267,14 +267,14 @@ export default defineComponent({
   box-shadow: -1px -1px 1px #FFF9F9 inset, 1px 1px 2px 0px #00000018 inset;
 }
 
-.CalenderHeadRow {
+.CalendarHeadRow {
   display: flex;
   flex-wrap: wrap;
   width: inherit;
   height: 20px;
   margin-top: 5px;
 }
-.CalenderRow {
+.CalendarRow {
   display: flex;
   flex-wrap: wrap;
   width: inherit;
@@ -343,7 +343,7 @@ export default defineComponent({
   font-size: 10px;
 }
 
-.CalenderDate {
+.CalendarDate {
   display: block;
   color: #444;
   text-align: center;

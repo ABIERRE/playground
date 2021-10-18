@@ -1,5 +1,5 @@
 <template>
-  <div class="CalenderController">
+  <div class="CalendarController">
     <VerticalInOut>
       <TodayBtn v-show="isPage"/>
     </VerticalInOut>
@@ -23,7 +23,7 @@ import DateText from '@/components/Molecules/DateText.vue'
 import VerticalInOut from '../Transition/VerticalInOut.vue'
 
 export default defineComponent({
-  name: 'CalenderController',
+  name: 'CalendarController',
   components: {
     TodayBtn,
     DateText,
@@ -38,7 +38,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.CalenderController {
+.CalendarController {
   width: 0 auto;
   height: 0 auto;
   background: none;
@@ -46,7 +46,7 @@ export default defineComponent({
 }
 
 @media screen and (max-width: 601px) {
-  .CalenderController {
+  .CalendarController {
     margin-top: 20px;
     margin-left: 0px;
   }

@@ -2,7 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import store from '@/store'
 
 import Index from '@/views/Index.vue'
-import Calender from '@/views/Calender.vue'
+import Calendar from '@/views/Calendar.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -11,9 +11,9 @@ const routes: Array<RouteRecordRaw> = [
     component: Index
   },
   {
-    path: '/calender',
-    name: 'Calender',
-    component: Calender
+    path: '/calendar',
+    name: 'Calendar',
+    component: Calendar
   }
 
 ]

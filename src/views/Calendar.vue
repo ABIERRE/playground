@@ -1,8 +1,8 @@
 <template>
   <div class="Index">
     <FlexBox :padding="false">
-      <Calender />
-      <CalenderController />
+      <Calendar />
+      <CalendarController />
     </FlexBox>
   </div>
 </template>
@@ -12,15 +12,15 @@ import { defineComponent, onMounted } from 'vue'
 import { useStore } from 'vuex'
 import FlexBox from '@/components/Atoms/FlexBox.vue'
 
-import Calender from '@/components/Organisms/CalenderBase.vue'
-import CalenderController from '@/components/Organisms/CalenderController.vue'
+import Calendar from '@/components/Organisms/CalendarBase.vue'
+import CalendarController from '@/components/Organisms/CalendarController.vue'
 
 export default defineComponent({
-  name: 'CalenderView',
+  name: 'CalendarView',
   components: {
     FlexBox,
-    Calender,
-    CalenderController
+    Calendar,
+    CalendarController
   },
   setup () {
     const store = useStore()

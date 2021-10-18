@@ -1,7 +1,7 @@
 <template>
-  <div class="CalenderBase">
+  <div class="CalendarBase">
     <Pop>
-      <Calender v-show="isPage" />
+      <Calendar v-show="isPage" />
     </Pop>
   </div>
 </template>
@@ -9,7 +9,7 @@
 <script lang="ts">
 import { useStore } from 'vuex'
 import Pop from '@/components/Transition/Pop.vue'
-import Calender from '@/components/Molecules/Calender.vue'
+import Calendar from '@/components/Molecules/Calendar.vue'
 
 import {
   computed,
@@ -17,9 +17,9 @@ import {
 } from 'vue'
 
 export default defineComponent({
-  name: 'CalenderBase',
+  name: 'CalendarBase',
   components: {
-    Calender,
+    Calendar,
     Pop
   },
   setup () {
