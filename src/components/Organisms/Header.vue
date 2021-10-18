@@ -1,18 +1,21 @@
 <template>
   <div class="Header">
+    <Hio :delay="100" :length="60">
+      <div class="Linker" v-show="route !== '/'">
+      <router-link to="/">
+        <FlexBox>
+        <Icon class="InlineBlock" :src="HomeIcon" :size="20" />
+        <div class="InlineBlock">Home</div>
+        </FlexBox>
+      </router-link>
+      </div>
+    </Hio>
     <router-link to="/">
-      <FlexBox :padding="false">
-        <MainTitle class="MainTitle" :text="rname" />
-        <Icon
-          :size="27"
-          :src="homeIcon"
-          v-show="route !== '/' && state.xy.x > 600"
-        />
-      </FlexBox>
+      <MainTitle class="MainTitle" :text="rname" />
     </router-link>
 
-    <Hio :delay="300" :length="60">
-      <div class="route" v-show="route !== '/calender'">
+    <Hio :delay="100" :length="60">
+      <div class="route" v-show="route !== '/calender' && isPage">
         <router-link to="/calender">Calender</router-link>
       </div>
     </Hio>
@@ -25,10 +28,8 @@ import { computed, defineComponent, onBeforeUnmount, onMounted, reactive } from 
 import { useStore } from 'vuex'
 import MainTitle from '@/components/Atoms/MainTitle.vue'
 import Hio from '@/components/Transition/HorizontalInOut.vue'
-
-import homeIcon from '@/assets/home.svg'
 import Icon from '@/components/Atoms/Icon.vue'
-import FlexBox from '@/components/Atoms/FlexBox.vue'
+import HomeIcon from '@/assets/home.svg'
 
 type XY = {
   x: number,
@@ -44,13 +45,13 @@ export default defineComponent({
   components: {
     MainTitle,
     Hio,
-    Icon,
-    FlexBox
+    Icon
   },
   setup () {
     const store = useStore()
     const route = computed(() => store.getters['system/getRoutePath']())
     const rname = computed(() => store.getters['system/getRouteName']())
+    const isPage = computed(() => store.getters['system/isPage']())
 
     const state: HeaderState = reactive({
       xy: {
@@ -90,10 +91,11 @@ export default defineComponent({
     })
 
     return {
+      state,
       route,
       rname,
-      homeIcon,
-      state
+      isPage,
+      HomeIcon
     }
   }
 })
@@ -115,6 +117,23 @@ export default defineComponent({
 .MainTitle {
   margin-top: 14px;
   margin-right: 5px;
+}
+
+.InlineBlock {
+  display: inline-block;
+  height: 30px;
+  line-height: 50px;
+  vertical-align: top;
+  margin-right: 5px;
+}
+
+.Linker {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  height: 30px;
+  font-size: 12px;
+  line-height: 30px;
 }
 
 </style>
