@@ -17,48 +17,42 @@ export default defineComponent({
   name: 'VerticalInOut',
   props: {
     length: {
-      type: String,
+      type: Number,
       required: false,
-      default: '20'
+      default: 50
     },
     delay: {
       type: Number,
       required: false,
-      default: 300
+      default: 20
     }
   },
   setup (props) {
     const store = useStore()
-    const len = parseInt(props.length) || 300
-    const bounce = len / 5
+    const len = props.length || 50
     return {
       enter (el: HTMLElement, done: () => void): void {
         if (!el) return
         if (store.getters['system/isPage']()) return
 
-        const delay = props.delay || 300
+        const delay = props.delay || 20
         const tl = V.timeline()
         tl.add({
           targets: el,
           translateY: len,
-          easing: 'easeOutQuad',
           opacity: 0,
+          easing: 'easeOutQuad',
+          delay: delay,
           duration: 0
         })
+
         tl.add({
           targets: el,
-          translateY: '-=' + (len + bounce),
+          translateY: 0,
           opacity: 1,
+          easing: 'easeOutQuad',
           delay: delay,
-          easing: 'easeOutQuad',
-          duration: 300
-        })
-        tl.add({
-          targets: el,
-          opacity: 1,
-          translateY: '+=' + bounce,
-          easing: 'easeOutQuad',
-          duration: 300,
+          duration: 200,
           complete () {
             el.removeAttribute('style')
             done()
@@ -66,12 +60,14 @@ export default defineComponent({
         })
       },
       leave (el: HTMLElement, done: () => void): void {
+        const delay = props.delay || 20
         V({
           targets: el,
           translateY: len,
           opacity: 0,
           easing: 'easeOutQuad',
-          duration: 300,
+          duration: 500,
+          delay: delay,
           complete () {
             done()
           }

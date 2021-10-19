@@ -11,7 +11,7 @@
       </div>
     </Hio>
     <router-link to="/">
-      <MainTitle class="MainTitle" :text="rname" />
+      <Typer class="MainTitle" :text="rname" />
     </router-link>
 
     <Hio :delay="0" :length="60" v-if="route !== ''">
@@ -26,10 +26,12 @@
 <script lang="ts">
 import { computed, defineComponent, onBeforeUnmount, onMounted, reactive } from 'vue'
 import { useStore } from 'vuex'
-import MainTitle from '@/components/Atoms/MainTitle.vue'
+// import MainTitle from '@/components/Atoms/MainTitle.vue'
 import Hio from '@/components/Transition/HorizontalInOut.vue'
 import Icon from '@/components/Atoms/Icon.vue'
 import HomeIcon from '@/assets/home.svg'
+
+import Typer from '@/components/Molecules/Typer.vue'
 
 type XY = {
   x: number,
@@ -44,9 +46,10 @@ type HeaderState = {
 export default defineComponent({
   name: 'Header',
   components: {
-    MainTitle,
+    // MainTitle,
     Hio,
-    Icon
+    Icon,
+    Typer
   },
   setup () {
     const store = useStore()
@@ -118,6 +121,9 @@ export default defineComponent({
 }
 
 .MainTitle {
+  width: 0 auto;
+  height: 60px;
+  line-height: 60px;
   margin-top: 14px;
   margin-right: 5px;
   text-shadow: 3px 3px 3px #ddd;

@@ -1,14 +1,14 @@
 <template>
   <div class="CalendarBase">
-    <Pop :delay="100">
+    <VerticalInOut :delay="50">
       <Calendar v-show="isPage" />
-    </Pop>
+    </VerticalInOut>
   </div>
 </template>
 
 <script lang="ts">
 import { useStore } from 'vuex'
-import Pop from '@/components/Transition/Pop.vue'
+import VerticalInOut from '../Transition/VerticalInOut.vue'
 import Calendar from '@/components/Molecules/Calendar.vue'
 
 import {
@@ -20,7 +20,7 @@ export default defineComponent({
   name: 'CalendarBase',
   components: {
     Calendar,
-    Pop
+    VerticalInOut
   },
   setup () {
     const store = useStore()

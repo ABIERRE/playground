@@ -1,5 +1,8 @@
 <template>
-  <div class="MainTitle">{{ text }}</div>
+  <div class="MainTitle">
+    <span v-if="text">{{ text }}</span>
+    <slot v-else />
+  </div>
 </template>
 
 <script lang="ts">
