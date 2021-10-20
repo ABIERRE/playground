@@ -1,7 +1,12 @@
 <template>
   <div
     class="IconBase"
-    :style="'width: ' + size * 1.5 + 'px; height: ' + size * 1.5 + 'px;' + 'margin-top: ' + size / 2 + 'px;'"
+    :style="
+      'width: ' + size * 1.5 + 'px;' +
+      'height: ' + size * 1.5 + 'px;' +
+      'margin-top: ' + size / 2 + 'px;' +
+      'padding-top: ' + paddingTop + 'px;'
+    "
   >
     <img
       class="Icon"
@@ -22,6 +27,11 @@ export default defineComponent({
       type: Number,
       required: false,
       default: 20
+    },
+    paddingTop: {
+      type: Number,
+      required: false,
+      default: 5
     }
   }
 })
@@ -32,7 +42,7 @@ export default defineComponent({
   height: 30px;
   border-radius: 50%;
   background: linear-gradient(165deg, #fafafa, #efefef);
-  padding-top: 5px;
+  padding-top: 0px;
   user-select: none;
 }
 .Icon {

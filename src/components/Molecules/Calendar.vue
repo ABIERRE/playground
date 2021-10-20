@@ -91,7 +91,6 @@ export default defineComponent({
     const setDate = (date: string): void => {
       if (date === '') return
       if (date === '0') return
-      console.log(date)
       const val = parseInt(date)
       if (isNaN(val)) return
       const d = +new Date(state.y, state.m - 1, val, 0, 0, 0)
@@ -99,9 +98,7 @@ export default defineComponent({
     }
 
     const initCalendar = (): void => {
-      console.log('called initCalendar')
       const dt = new Date(tdate.value)
-      console.log('target calendar', dt)
 
       const y = dt.getFullYear()
       const m = dt.getMonth() + 1
@@ -156,11 +153,6 @@ export default defineComponent({
       const dayStart = st.getDay()
       const dateMax = ed.getDate()
 
-      console.log('start', st)
-      console.log('start', ed)
-      console.log('dateMax', dateMax)
-      console.log('dayStart', dayStart)
-
       state.dateMax = dateMax
       state.dayStart = dayStart
 
@@ -170,7 +162,6 @@ export default defineComponent({
     const rendarDate = (i: number): string => {
       const d = i - state.dayStart
       const str = d > 0 && d <= state.dateMax ? d + '' : ''
-      console.log(str, i, state.dayStart)
       return str
     }
 
@@ -195,19 +186,15 @@ export default defineComponent({
     const prev = () => {
       const dt = new Date(state.y, state.m - 1, 1)
       dt.setMonth(dt.getMonth() - 1)
-      console.log('after, prev', dt)
       state.y = dt.getFullYear()
       state.m = dt.getMonth() + 1
-      console.log(state.y, state.m)
     }
 
     const ff = () => {
       const dt = new Date(state.y, state.m - 1, 1)
       dt.setMonth(dt.getMonth() + 1)
-      console.log('after, prev', dt)
       state.y = dt.getFullYear()
       state.m = dt.getMonth() + 1
-      console.log(state.y, state.m)
     }
 
     return {

@@ -20,7 +20,7 @@ export default {
 
 <style scoped>
 .MainTitle {
-  font-size: 30px;
+  font-size: 26px;
   line-height: 40px;
   margin-bottom: 20px;
   letter-spacing: 2px;

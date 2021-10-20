@@ -19,7 +19,7 @@ export default defineComponent({
     length: {
       type: Number,
       required: false,
-      default: 50
+      default: 30
     },
     delay: {
       type: Number,
@@ -29,7 +29,7 @@ export default defineComponent({
   },
   setup (props) {
     const store = useStore()
-    const len = props.length || 50
+    const len = props.length || 30
     return {
       enter (el: HTMLElement, done: () => void): void {
         if (!el) return
@@ -52,10 +52,10 @@ export default defineComponent({
           opacity: 1,
           easing: 'easeOutQuad',
           delay: delay,
-          duration: 200,
+          duration: 400,
           complete () {
-            el.removeAttribute('style')
             done()
+            el.removeAttribute('style')
           }
         })
       },

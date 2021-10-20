@@ -41,20 +41,13 @@ export default defineComponent({
     const bounce = len / 10
     const direction = props.direction === 'left' ? '-' : '+'
     const reverse = props.direction === 'left' ? '+' : '-'
-    console.log('props.direction', props.direction)
-    console.log('direction', direction)
-    console.log('reverse', reverse)
 
     return {
       enter (el: HTMLElement, done: () => void): void {
-        console.log('HorizontalInOut called Enter', props.disable)
         if (props.disable) return done()
 
         el.style.opacity = '0'
         const delay = props.delay
-        console.log(direction + len + 'px')
-        console.log(direction + '=' + (len + bounce) + 'px')
-        console.log(reverse + '=' + bounce + 'px')
 
         const tl = V.timeline()
         tl.add({
