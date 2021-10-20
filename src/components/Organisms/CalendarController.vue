@@ -3,15 +3,10 @@
     <VerticalInOut
       :delay="150"
     >
-      <TodayBtn v-show="isPage"/>
-    </VerticalInOut>
-
-    <VerticalInOut
-      :delay="250"
-    >
-      <DateText
-        v-show="isPage"
-      />
+      <div v-show="isPage">
+        <TodayBtn />
+        <DateText />
+      </div>
     </VerticalInOut>
   </div>
 </template>

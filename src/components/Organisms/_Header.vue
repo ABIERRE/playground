@@ -3,12 +3,12 @@
 
     <Hio :delay="100" :length="60">
       <div class="Linker" v-if="route !== '/' && state.isReady">
-        <router-link to="/">
-          <FlexBox :padding="false">
-          <Icon :src="HomeIcon" :size="15" :paddingTop="3"/>
-            <div class="InlineBlock">Home</div>
-          </FlexBox>
-        </router-link>
+      <router-link to="/">
+        <FlexBox>
+          <Icon class="InlineBlock" :src="HomeIcon" :size="20" />
+          <div class="InlineBlock">Home</div>
+        </FlexBox>
+      </router-link>
       </div>
     </Hio>
 
@@ -21,12 +21,7 @@
 
     <Hio :delay="0" :length="60" v-if="route !== ''">
       <div class="route" v-if="route !== '/calendar' && state.isReady">
-      <router-link to="/calendar">
-        <FlexBox :padding="false">
-          <Icon :src="CalendarIcon" :size="20" />
-          <div class="InlineBlock">Calendar</div>
-        </FlexBox>
-      </router-link>
+        <router-link to="/calendar">Calendar</router-link>
       </div>
     </Hio>
 
@@ -38,12 +33,9 @@ import { computed, defineComponent, onBeforeUnmount, onMounted, reactive } from 
 import { useStore } from 'vuex'
 import Hio from '@/components/Transition/HorizontalInOut.vue'
 import Icon from '@/components/Atoms/Icon.vue'
-
 import HomeIcon from '@/assets/home.svg'
-import CalendarIcon from '@/assets/calendar.svg'
 
 import Typer from '@/components/Molecules/Typer.vue'
-import FlexBox from '../Atoms/FlexBox.vue'
 
 type XY = {
   x: number,
@@ -60,7 +52,6 @@ export default defineComponent({
   components: {
     Hio,
     Icon,
-    FlexBox,
     Typer
   },
   setup () {
@@ -111,7 +102,6 @@ export default defineComponent({
       route,
       rname,
       isPage,
-      CalendarIcon,
       HomeIcon
     }
   }
@@ -121,14 +111,14 @@ export default defineComponent({
 <style scoped>
 .Header {
   padding-left: 20px;
+  font-size: 30px;
   height: 0 auto;
   background: none;
 }
 
 .route {
   font-size: 14px;
-  letter-spacing: 2px;
-  font-weight: bold;
+  letter-spacing: 1px;
 }
 
 .MainTitle {
@@ -139,17 +129,15 @@ export default defineComponent({
   margin-right: 5px;
   text-shadow: 3px 3px 3px #ddd;
   letter-spacing: 3px;
-  font-size: 20px;
 }
 
 .InlineBlock {
   display: inline-block;
   height: 30px;
-  line-height: 40px;
+  line-height: 50px;
   vertical-align: top;
   margin-right: 5px;
   letter-spacing: 1px;
-  margin-left: 5px;
 }
 
 .Linker {
@@ -157,9 +145,8 @@ export default defineComponent({
   top: 5px;
   left: 20px;
   height: 30px;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 30px;
-  font-weight: bold;
 }
 
 </style>
