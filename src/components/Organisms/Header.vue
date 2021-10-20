@@ -23,7 +23,7 @@
       <div class="route" v-if="route !== '/calendar' && state.isReady">
       <router-link to="/calendar">
         <FlexBox :padding="false">
-          <Icon :src="CalendarIcon" :size="20" />
+        <Icon :src="CalendarIcon" :size="15" :paddingTop="3" />
           <div class="InlineBlock">Calendar</div>
         </FlexBox>
       </router-link>
@@ -133,10 +133,9 @@ export default defineComponent({
 
 .MainTitle {
   width: 0 auto;
-  height: 60px;
-  line-height: 60px;
-  margin-top: 14px;
-  margin-right: 5px;
+  height: 50px;
+  line-height: 50px;
+  margin-top: 0px;
   text-shadow: 3px 3px 3px #ddd;
   letter-spacing: 3px;
   font-size: 20px;
@@ -154,7 +153,7 @@ export default defineComponent({
 
 .Linker {
   position: absolute;
-  top: 5px;
+  top: 10px;
   left: 20px;
   height: 30px;
   font-size: 14px;

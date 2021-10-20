@@ -257,6 +257,7 @@ export default defineComponent({
 }
 
 .nIcon:active {
+  transform: scale(0.95, 0.95);
   box-shadow: -1px -1px 1px #FFF9F9 inset, 1px 1px 2px 0px #00000018 inset;
 }
 
